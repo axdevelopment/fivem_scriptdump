@@ -1,3 +1,9 @@
+-- got one issue on my end, idk why:
+-- if CurrentVersion (example: 1.0) == NewestVersion (example: 1.0) 
+-- it still shows that you need to update the version
+-- even if both are the same (1.0 == 1.0)
+-- idk what the f### causes this problem
+
 local CheckVersion = true
 
 AddEventHandler('onResourceStart', function(resource)
@@ -16,7 +22,7 @@ local CurrentVersion = GetCurrentVersion()
 local resourceName = "^4["..GetCurrentResourceName().."]^0"
 
 if CheckVersion then
-	PerformHttpRequest('https://raw.githubusercontent.com/axdevelopment/fivem_scriptdump/main/VERSION', function(Error, NewestVersion, Header)
+	PerformHttpRequest('https://raw.githubusercontent.com/axdevelopment/fivem_scriptdump/main/VERSION', function(Error, NewestVersion, Header) -- make sure to put in a raw github file containing only this format = N.N (N = number)
 		print("###############################")
     	if CurrentVersion == NewestVersion then
 	    	print(GetCurrentResourceName() .. '^2 ✓ Resource is Up to Date^0 - ^5Current Version: ^2' .. CurrentVersion .. '^0')
